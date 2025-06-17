@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -53,19 +52,19 @@ type TaxResult struct {
 	Refund         int
 }
 
-var db *gorm.DB
+// var db *gorm.DB
 
 func main() {
-	var err error
+	// var err error
 
-	dsn := "root:photo0877071818@TH@tcp(127.0.0.1:3306)/tax_db?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatal("Failed to connect to database:", err)
-	}
+	// dsn := "root:photo0877071818@TH@tcp(127.0.0.1:3306)/tax_db?charset=utf8mb4&parseTime=True&loc=Local"
+	// db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	// if err != nil {
+	// 	log.Fatal("Failed to connect to database:", err)
+	// }
 
 	// Create TaxResult table if not exists
-	db.AutoMigrate(&TaxResult{})
+	// db.AutoMigrate(&TaxResult{})
 
 	// Setup Echo server
 	e := echo.New()
@@ -100,12 +99,12 @@ func calculateTaxHandler(c echo.Context) error {
 		refund = 0
 	}
 	// Save result to database
-	db.Create(&TaxResult{
-		TotalIncome:    totalIncome,
-		TotalDeduction: totalDeduction,
-		TotalTax:       totalTax,
-		Refund:         refund,
-	})
+	// db.Create(&TaxResult{
+	// 	TotalIncome:    totalIncome,
+	// 	TotalDeduction: totalDeduction,
+	// 	TotalTax:       totalTax,
+	// 	Refund:         refund,
+	// })
 
 	var resp TaxResponse
 	resp.Code = 1000
@@ -163,7 +162,7 @@ func calculateTax(income int) int {
 		if income <= b.limit {
 			tax += float64(income-prevLimit) * b.rate
 			break
-		}	
+		}
 		tax += float64(b.limit-prevLimit) * b.rate
 		prevLimit = b.limit
 	}
