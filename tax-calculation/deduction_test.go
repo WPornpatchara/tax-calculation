@@ -26,17 +26,17 @@ func TestCalculateTax(t *testing.T) {
 		expected int    
 	}{
 		{
-			name:"Income 450,000 should result in 22,500 tax",
+			name: "Income 450,000 should result in 22,500 tax",
 			income: 450000,
 			expected: 22500,
 		},
 		{
-			name:"Income 800,000 should result in 75,000 tax",
+			name: "Income 800,000 should result in 75,000 tax",
 			income: 800000,
 			expected: 75000,
 		},
 		{
-			name:"Income 2,500,000 should result in 515,000 tax",
+			name: "Income 2,500,000 should result in 515,000 tax",
 			income: 2500000,
 			expected: 515000,
 		},
