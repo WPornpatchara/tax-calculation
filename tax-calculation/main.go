@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -105,6 +106,8 @@ func calculateTaxHandler(c echo.Context) error {
 	// 	TotalTax:       totalTax,
 	// 	Refund:         refund,
 	// })
+
+	fmt.Println("Total Income:", totalIncome)
 
 	var resp TaxResponse
 	resp.Code = 1000
